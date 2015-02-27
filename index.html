@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>YO</title>
+    <script>
+      var getImgWidth = function () {
+       return $('.slide.displayed-slide img').width();
+      };
+
+      var shiftLeft = function () {
+	  $('slides-holder').animate({ left: '-=' + getImgWidth() }, 'ease');
+      };
+
+      var shiftRight = function () {
+	  $('slides-holder').animate({ left: '+=' + getImgWidth() }, 'ease');
+      };
+
+      $('main-slider').on('click', function () {
+	  $('#thing').animate({ 'top': '-=10px', 'custom': '30' }, 'ease' );
+	  var i = $('.displayed-slide').index();
+	  //alert(i);
+	  if (i >= 0 || i <= $('slides-holder').length) {
+	      //alert('if is passed!');
+	      //i++;
+	      shiftLeft();
+	      $('standard-slide').eq(i).removeClass('displayed-slide');
+	      //hideAndShow();
+	      //alert(i);
+	      $('standard-slide').eq(i+1).addClass('displayed-slide');
+	      //alert(i);
+	  }
+      });
+
+      $('main-slider').on('swipe', function () {
+	  
+	  var i = $('.displayed-slide').index();
+	  //alert(i);
+	  if (i >= 0 || i <= $('slides-holder').length) {
+	      //alert('if is passed!');
+	      //i++;
+	      shiftRight();
+	      $('standard-slide').eq(i).removeClass('displayed-slide');
+	      //hideAndShow();
+	      //alert(i);
+	      $('standard-slide').eq(i-1).addClass('displayed-slide');
+	      //alert(i);
+	  }
+      });
+    </script>
+    <style>
+      [block] {
+	  display: block;
+      }
+
+      [inline-block] {
+	  display: inline-block;
+      }
+
+      #thing {
+	  position: relative;
+	  left: 10px;
+	  top: 30px;
+	  color: white;
+	  background: red;
+      }
+
+      page-holder {
+	  width: 100%;
+	  height: 100%;
+	  background: black;
+	  position: fixed;
+      }
+
+      p {
+	  color: white;
+      }
+
+      main-slider {
+	  overflow-x: hidden;
+	  overflow-y: hidden;
+	  width: 100vw;
+	  max-height: 200px;
+      }
+
+      slides-holder {
+	  width: 9999px;
+	  position: relative;
+      }
+
+      .slide {
+	  max-width: 100vw;
+	  max-height: 200px;
+	  display: inline-block;
+      }
+
+      .slide img {
+	  max-width: 100vw;
+	  max-height: 200px;
+      }
+
+      ::-webkit-scrollbar {
+	  display: none;
+      }
+
+      .slide {
+	  opacity: 0;
+      }
+
+      .displayed-slide {
+	  opacity: 1 !important;
+	  -webkit-transition: opacity 1s;
+	  transition: opacity 1s;  
+      }
+    </style>
+  </head>
+  <body>
+    <page-holder block>
+	<p>PARALLAX SLIDESHOW PROTOTAIP</p>
+	<div id="thing">HI</div>
+	<main-slider block>
+	    <slides-holder block>
+		<standard-slide class="slide displayed-slide" slide="1"><img src="http://2.bp.blogspot.com/_PyA4PaoazEw/TUoXz26YWII/AAAAAAAAASs/kc1C_kOsvUM/s1600/google_logo_15.jpg"></standard-slide>
+		<standard-slide class="slide" slide="2"><img src="http://2.bp.blogspot.com/_PyA4PaoazEw/TUoXz26YWII/AAAAAAAAASs/kc1C_kOsvUM/s1600/google_logo_15.jpg"></standard-slide>
+		<standard-slide class="slide" slide="3"><img src="http://2.bp.blogspot.com/_PyA4PaoazEw/TUoXz26YWII/AAAAAAAAASs/kc1C_kOsvUM/s1600/google_logo_15.jpg"></standard-slide>
+		<standard-slide class="slide" slide="4"><img src="http://2.bp.blogspot.com/_PyA4PaoazEw/TUoXz26YWII/AAAAAAAAASs/kc1C_kOsvUM/s1600/google_logo_15.jpg"></standard-slide>
+		<standard-slide class="slide" slide="5"><img src="http://2.bp.blogspot.com/_PyA4PaoazEw/TUoXz26YWII/AAAAAAAAASs/kc1C_kOsvUM/s1600/google_logo_15.jpg"></standard-slide>
+		</slides-holder>
+	</main-slider>
+    </page-holder>
+  </body>
+</html>
