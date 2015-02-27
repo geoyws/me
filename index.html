@@ -5,6 +5,7 @@
     <title>YO</title>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script>
+      alert(1);
       var getImgWidth = function () {
        return $('.slide.displayed-slide img').width();
       };
@@ -18,6 +19,7 @@
       };
 
       $('main-slider').on('click', function () {
+	  alert(2);
 	  $('#thing').animate({ 'top': '-=10px', 'custom': '30' }, 'ease' );
 	  var i = $('.displayed-slide').index();
 	  //alert(i);
